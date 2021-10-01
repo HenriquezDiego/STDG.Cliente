@@ -1,41 +1,76 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+    <v-app-bar
+      :clipped-left="$vuetify.breakpoint.lgAndUp"
+      color="primary"
+      style="
+        box-shadow: inset 0 -7px 0 var(--v-secondary-base),
+          0px 0px 8px 2px rgba(0, 0, 0, 0.4);
+      "
+      dark
+      app
+      fixed
+    >
+      <v-toolbar-title style="width: 400px">
+        <v-layout>
+          <div>
+            <v-app-bar-nav-icon
+              v-if="false"
+              @click.stop="drawer = !drawer"
+            ></v-app-bar-nav-icon>
+          </div>
+          <div>
+            <v-img
+              class="hidden-sm-and-down"
+              src="@/assets/unicaes-transparent-500.png"
+              style="padding-top: 5px"
+              contain
+              width="230"
+            ></v-img>
+          </div>
+        </v-layout>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
-
+      <div v-if="false">
+        <v-btn icon>
+          <v-icon style="width: 25px">fa-user</v-icon>
+        </v-btn>
+        <strong>{{ user.nombre }}</strong>
+      </div>
       <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
+        v-if="true"
+        color="primary"
+        depressed
+        class="ml-4"
+        @click="dialogLogIn = true"
       >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
+        INICIAR SESION
+      </v-btn>
+      <v-btn
+        v-if="false"
+        color="primary"
+        depressed
+        class="ml-4"
+        @click="logOut()"
+      >
+        CERRAR SESION
       </v-btn>
     </v-app-bar>
-
     <v-main>
-      <router-view />
+      <v-container fluid fill-height>
+        <v-slide-y-transition mode="out-in">
+          <router-view />
+        </v-slide-y-transition>
+      </v-container>
     </v-main>
+
+    <v-footer dark padless>
+      <v-card class="flex" flat tile>
+        <v-card-actions class="primary justify-center">
+          &copy;{{ new Date().getFullYear() }} — <strong>ProyCon</strong>
+        </v-card-actions>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
@@ -48,3 +83,51 @@ export default {
   }),
 };
 </script>
+
+<style>
+/* ESTILO GLOBAL ENTRE COMPONENTES */
+td {
+  font-size: 14.5px !important;
+}
+/* Titulos de datatables */
+.titulo {
+  font-size: 16px !important;
+  font-weight: 500;
+}
+.sidebarTitle {
+  font-size: 15px !important;
+}
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+/* Titulos de dialogs de reportes */
+.dialogsOptionTitlePrimary {
+  font-size: 16px;
+  color: var(--v-primary-base);
+}
+/* Bordes redondeados en maestros detalles */
+.borderDetallesPrimary {
+  background-color: white !important;
+  border: 3px solid var(--v-primary-base) !important;
+  border-radius: 15px !important;
+  margin-top: 20px;
+}
+/* Label de periodo cerrados en contabilidad */
+.periodoCerradoTitlePrimary {
+  color: var(--v-primary-base) !important;
+  font-size: 18px;
+  float: left;
+}
+.colorPrimary {
+  color: var(--v-primary-base) !important;
+}
+.smallForm {
+  margin-bottom: -14px;
+}
+</style>
