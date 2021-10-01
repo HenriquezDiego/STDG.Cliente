@@ -15,9 +15,11 @@
         <p class="body-1 font-weight-regular">
           Para mas información, pueden revisar <br />
           nuestro repositorio en
-          <a href="https://gitlab.com/cmfc31/clientedeca" target="_blank"
-            >Gitlab</a
-          >
+          <a
+            href="https://github.com/HenriquezDiego/STDG.Cliente.git"
+            target="_blank"
+            >Github
+          </a>
         </p>
       </v-flex>
     </v-layout>

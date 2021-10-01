@@ -1,5 +1,68 @@
 <template>
   <v-app>
+    <v-navigation-drawer
+      v-if="loggedIn"
+      v-model="drawer"
+      :clipped="$vuetify.breakpoint.lgAndUp"
+      width="290"
+      fixed
+      app
+    >
+      <v-list dense>
+        <!-- INICIO -->
+        <v-list-item :to="{ name: 'inicio' }" exact color="primary">
+          <v-list-item-action>
+            <v-icon style="width: 25px">fa-home</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="sidebarTitle"> Inicio </v-list-item-title>
+        </v-list-item>
+
+        <!-- DECANATOS -->
+        <v-list-group value="true">
+          <v-list-item slot="activator">
+            <v-list-item-content>
+              <v-list-item-title class="sidebarTitle">
+                Decanatos
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <!-- Submenu Compras -->
+          <v-list-item :to="{ name: 'marcaciones' }">
+            <v-list-item-action>
+              <v-icon style="width: 25px">fa-fingerprint</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="sidebarTitle">
+                Marcaciones
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item :to="{ name: 'marcadores' }">
+            <v-list-item-action>
+              <v-icon style="width: 25px">fa-stopwatch</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="sidebarTitle">
+                Marcadores
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+
+          <v-list-item @click="abrirManual()">
+            <v-list-item-action>
+              <v-icon style="width: 25px">fa-question-circle</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>
+              <v-list-item-title class="sidebarTitle">
+                Manual de usuario
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list-group>
+      </v-list>
+    </v-navigation-drawer>
     <v-app-bar
       :clipped-left="$vuetify.breakpoint.lgAndUp"
       color="primary"
@@ -67,7 +130,8 @@
     <v-footer dark padless>
       <v-card class="flex" flat tile>
         <v-card-actions class="primary justify-center">
-          &copy;{{ new Date().getFullYear() }} — <strong>ProyCon</strong>
+          &copy;{{ new Date().getFullYear() }} —
+          <strong> Sistema de gestión de trabajos de graduación.</strong>
         </v-card-actions>
       </v-card>
     </v-footer>
